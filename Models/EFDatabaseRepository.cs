@@ -19,7 +19,9 @@ public class EFDatabaseRepository : IDataRepository
     public IEnumerable<Person> GetPersons()
     {
         return _context.Set<Person>()
-            .Include(p => p.Clothes);
+            .Include(p => p.Clothes)
+            .Include(p => p.Flats).ThenInclude(p => p.Persons);
+            ;
     }
 
     public Person GetPersonById(int id)
@@ -70,6 +72,29 @@ public class EFDatabaseRepository : IDataRepository
     public void DeleteCloth(int id)
     {
         _context.Cloths.Remove(GetClothById(id));
+        _context.SaveChanges();
+    }
+
+    public IEnumerable<Flat> GetFlats()
+    {
+        return _context.Set<Flat>().Include(f => f.Persons);
+    }
+
+    public void AddFlat(Flat flat)
+    {
+        _context.Flats.Add(flat);
+        _context.SaveChanges();
+    }
+
+    public void CreatePersonFlat(Person person, Flat flat)
+    {
+        person.Flats.Add(flat);
+        _context.SaveChanges();
+    }
+
+    public void UpdateFlat(Flat flat)
+    {
+        _context.Flats.Update(flat);
         _context.SaveChanges();
     }
 }

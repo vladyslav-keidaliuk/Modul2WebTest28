@@ -18,17 +18,19 @@ namespace Modul2WebTest28.Controllers
         public IActionResult Index()
         {
 
-            return View(
-                _context.Set<Person>()
-                    .Include(p => p.Clothes)
-                
-                );
+            return View(_dbRepository.GetPersons());
+        }
+
+        public IActionResult Flats()
+        {
+
+            return View(_dbRepository.GetFlats());
         }
 
         public IActionResult Create()
         {
             Random random = new Random();
-            Person person = new Person
+            Person person1 = new Person
             {
                 Name = $"New{random.Next(1000)}",
             };
@@ -36,10 +38,29 @@ namespace Modul2WebTest28.Controllers
             Cloth cloth1 = new Cloth { Name = $"New{random.Next(1000)}", };
             Cloth cloth2 = new Cloth { Name = $"New{random.Next(1000)}", };
 
-            person.Clothes.Add(cloth1);
-            person.Clothes.Add(cloth2);
+            Cloth cloth3 = new Cloth { Name = $"New{random.Next(1000)}", };
 
-            _dbRepository.AddPerson(person);
+            Flat flat1 = new Flat { Name = $"NewFlat{random.Next(1000)}" };
+            Flat flat2 = new Flat { Name = $"NewFlat{random.Next(1000)}" };
+
+            Person person2 = new Person { Name = $"New{random.Next(1000)}" };
+
+           
+
+            person1.Clothes.Add(cloth1);
+            person1.Clothes.Add(cloth2);
+
+            person2.Clothes.Add(cloth3);
+
+            _dbRepository.AddPerson(person1);
+            _dbRepository.AddPerson(person2);
+
+            _dbRepository.AddFlat(flat1);
+            _dbRepository.AddFlat(flat2);
+
+            _dbRepository.CreatePersonFlat(person1,flat1);
+            _dbRepository.CreatePersonFlat(person1,flat2);
+            _dbRepository.CreatePersonFlat(person2,flat2);
 
             return RedirectToAction(nameof(Index));
         }
@@ -51,7 +72,11 @@ namespace Modul2WebTest28.Controllers
             Cloth cloth = person.Clothes.First();
             cloth.Name = "NIKE";
 
+            Flat flat = _dbRepository.GetFlats().Last();
+            flat.Name = "Kadorr";
+
             _dbRepository.UpdatePerson(person);
+            _dbRepository.UpdateFlat(flat);
 
             return RedirectToAction(nameof(Index));
         }

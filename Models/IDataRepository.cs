@@ -8,8 +8,12 @@ public interface IDataRepository
     public IEnumerable<Cloth> GetCloths();
     public Cloth GetClothById(int id);
 
+    IEnumerable<Flat> GetFlats();
+
+
     void AddPerson(Person person);
     void AddCloth(Cloth cloth);
+    void AddFlat(Flat flat);
 
 
     void UpdatePerson(Person person);
@@ -17,5 +21,12 @@ public interface IDataRepository
 
     void UpdateCloth(Cloth cloth);
     void DeleteCloth(int id);
+
+    void UpdateFlat(Flat flat);
+
+    void CreatePersonFlat(Person person, Flat flat);
+
+
+
 
 }

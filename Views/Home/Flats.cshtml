@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Flat>
+
+
+<table class="table-striped table">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>People</td>
+    </tr>
+    @foreach (var flat in Model)
+    {
+        <tr>
+            <td>@flat.Id</td>
+            <td>@flat.Name</td>
+            <td>
+                @foreach (var person in flat.Persons)
+                {
+                    <br/>
+                    <p>Name:@person.Name</p>
+                }
+            </td>
+        </tr>
+    }
+</table>

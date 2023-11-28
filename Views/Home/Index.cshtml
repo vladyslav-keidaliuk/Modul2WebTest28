@@ -5,7 +5,8 @@
     <tr>
         <td>Id</td>
         <td>Name</td>
-        <td>Cloth</td>
+        <td>Cloths</td>
+        <td>Flats</td>
     </tr>
     @foreach (var person in Model)
     {
@@ -19,12 +20,20 @@
                     <p>Name:@cloth.Name</p>
                     <p>PersonId: @cloth.PersonId</p>
                 }
-                
+            </td>
+            <td>
+                @foreach (var flat in person.Flats)
+                {
+                    <p>flatId: @flat.Id</p>
+                    <p>Name:@flat.Name</p>
+                    <p>Persons Count (@flat.Persons.Count)</p>
+                }
             </td>
         </tr>
     }
 </table>
 
-<a asp-action="Create" class="btn-danger">Create</a>
-<a asp-action="Update" class="btn-danger">Update</a>
+<a asp-action="Create" class="btn-primary">Create</a>
+<a asp-action="Update" class="btn-primary">Update</a>
 <a asp-action="Delete" class="btn-danger">Delete</a>
+<a asp-action="Flats" class="btn-primary">Flats</a>
