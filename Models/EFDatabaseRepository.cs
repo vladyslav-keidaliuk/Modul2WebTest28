@@ -99,3 +99,22 @@ public class EFDatabaseRepository : IDataRepository
         _context.SaveChanges();
     }
 }
+
+
+
+// Generic class example
+
+// public class DataRepository<T> : IDataRepository<T> where T : class
+// {
+//     private ApplicationDbContext _context;
+//     public DataRepository(ApplicationDbContext context)
+//     {
+//         _context = context;
+//     }
+//
+//     public void Add(T data)
+//     {
+//         _context.Add(data);
+//         _context.SaveChanges();
+//     }
+// }

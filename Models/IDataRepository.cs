@@ -26,9 +26,13 @@ public interface IDataRepository
 
     void CreatePersonFlat(Person person, Flat flat);
 
-
-
-
-
-
 }
+
+
+
+// Generic interface example
+
+// public interface IDataRepository<T>
+// {
+//     void Add(T data);
+// }
