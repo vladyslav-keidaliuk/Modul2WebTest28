@@ -20,6 +20,7 @@ public class EFDatabaseRepository : IDataRepository
     {
         return _context.Set<Person>()
             .Include(p => p.Clothes)
+            .Include(p=>p.CreditCard)
             .Include(p => p.Flats).ThenInclude(p => p.Persons);
             ;
     }

@@ -5,6 +5,7 @@
     <tr>
         <td>Id</td>
         <td>Name</td>
+        <td>CreditCard</td>
         <td>Cloths</td>
         <td>Flats</td>
     </tr>
@@ -13,6 +14,7 @@
         <tr>
             <td>@person.Id</td>
             <td>@person.Name</td>
+            <td>@person.CreditCard.Name</td>
             <td>
                 @foreach (var cloth in person.Clothes)
                 {

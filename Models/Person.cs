@@ -9,4 +9,6 @@ public class Person
 
     public List<Flat> Flats { get; set; } = new(); // for many to many
 
+    public CreditCard CreditCard { get; set; } // for 1 to 1
+
 }

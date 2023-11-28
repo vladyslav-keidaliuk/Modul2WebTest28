@@ -12,6 +12,7 @@ namespace Modul2WebTest28.Models
         public DbSet<Person> Persons { get; set; }
         public DbSet<Cloth> Cloths { get; set; }
         public DbSet<Flat> Flats { get; set; }
+        public DbSet<CreditCard> CreditCards { get; set; }
 
     }
 }

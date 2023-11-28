@@ -30,9 +30,14 @@ namespace Modul2WebTest28.Controllers
         public IActionResult Create()
         {
             Random random = new Random();
+
+            CreditCard creditCard1 = new CreditCard{Name = $"CreditCard#{random.Next(1000)}"};
+            CreditCard creditCard2 = new CreditCard{Name = $"CreditCard#{random.Next(1000)}"};
+
             Person person1 = new Person
             {
                 Name = $"New{random.Next(1000)}",
+                CreditCard = creditCard1,
             };
 
             Cloth cloth1 = new Cloth { Name = $"New{random.Next(1000)}", };
@@ -43,7 +48,11 @@ namespace Modul2WebTest28.Controllers
             Flat flat1 = new Flat { Name = $"NewFlat{random.Next(1000)}" };
             Flat flat2 = new Flat { Name = $"NewFlat{random.Next(1000)}" };
 
-            Person person2 = new Person { Name = $"New{random.Next(1000)}" };
+            Person person2 = new Person
+            {
+                Name = $"New{random.Next(1000)}",
+                CreditCard = creditCard2,
+            };
 
            
 
@@ -69,6 +78,7 @@ namespace Modul2WebTest28.Controllers
         {
             Person person = _dbRepository.GetPersons().Last();
             person.Name = "Igor";
+            person.CreditCard.Name = "SexBank";
             Cloth cloth = person.Clothes.First();
             cloth.Name = "NIKE";
 
